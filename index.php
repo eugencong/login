@@ -1,4 +1,4 @@
-
+<?php
 try {
     $conn = new PDO("sqlsrv:server = tcp:eugentest.database.windows.net,1433; Database = "eugentest", "eugenong", "@Eugencong564823");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
