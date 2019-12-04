@@ -26,21 +26,17 @@
        <input type="submit" name="load_data" value="Load Data" />
  </form>
  <?php
-// PHP Data Objects(PDO) Sample Code:
-try {
-    $conn = new PDO("sqlsrv:server = tcp:eugentest.database.windows.net,1433; Database = eugentest", "eugenong", "{@Eugencong564823}");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
+    $host = "eugentest";
+    $user = "eugenong";
+    $pass = "@Eugencong564823";
+    $db = "eugentest";
 
-// SQL Server Extension Sample Code:
-$connectionInfo = array("UID" => "eugenong", "pwd" => "{@Eugencong564823}", "Database" => "eugentest", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:eugentest.database.windows.net,1433";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
-
+    try {
+        $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
+        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    } catch(Exception $e) {
+        echo "Failed: " . $e;
+    }
 
     if (isset($_POST['submit'])) {
         try {
